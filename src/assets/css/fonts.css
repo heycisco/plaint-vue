@@ -1,0 +1,32 @@
+@font-face {
+	font-family: 'TrixiePro';
+	src: local('../fonts/TrixiePro-Heavy'),
+		url('../fonts/TrixiePro-Heavy.woff2') format('woff2'),
+		url('../fonts/TrixiePro-Heavy.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'GOST-type-A';
+	src: local('../fonts/GOST type A'), local('GOSTTypeA'),
+		url('../fonts/GOSTTypeA.woff2') format('woff2'),
+		url('../fonts/GOSTTypeA.woff') format('woff');
+}
+@define-mixin font1 {
+	font-family: 'TrixiePro', 'Courier', monospace;
+	font-size: var(--font-size);
+	font-style: normal;
+	font-display: swap;
+	letter-spacing: -0.035em;
+	font-weight: 400;
+	text-shadow: 0 0 black;
+	line-height: 1.4;
+}
+@define-mixin font2 {
+	font-family: 'GOST-type-A', 'Tahoma', sans-serif;
+	font-size: var(--second-font-size);
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+	letter-spacing: 0;
+	line-height: 1.18;
+}

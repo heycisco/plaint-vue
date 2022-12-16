@@ -1,0 +1,75 @@
+<template>
+	<div class="wrapper">
+		<site-description :content="content.mainDescription"></site-description>
+		<main-form
+			v-if="ready"
+			:dialogVariants="content.dialogVariants"
+			@update="update($event)"
+		/>
+	</div>
+</template>
+
+<script>
+import axios from 'axios';
+import MainForm from '@/components/MainForm';
+import SiteDescription from '@/components/SiteDescription';
+import textContent from '@/content.json';
+
+export default {
+	components: {
+		MainForm,
+		SiteDescription,
+	},
+	data() {
+		return {
+			ready: false,
+			content: textContent,
+			form: {
+				name: '',
+				msg: '',
+			},
+			filtered: {
+				name: '',
+				msg: '',
+			},
+			message: '',
+			tooltip: '',
+		};
+	},
+	methods: {
+		update(data) {
+			this.form.msg = data.message;
+			this.form.name = data.name;
+			this.filter();
+		},
+		filter() {
+			let name = this.form.name;
+			let msg = this.form.msg;
+			msg = msg.replace(/(\r\n|\r|\n)/g, '<br>');
+			this.filtered.name = name;
+			this.filtered.msg = msg;
+			this.filtered = JSON.stringify(this.filtered);
+			// this.send();
+			setTimeout(() => this.$router.push('/sent'), 5000);
+		},
+		send() {
+			axios
+				.post('https://starchenkov.pro/use-it/mail.php', this.filtered)
+				.then((response) => {
+					console.log(response.data);
+				})
+				.catch((error) => {
+					console.log(error);
+				})
+				.finally(() => {
+					setTimeout(() => this.$router.push('/sent'), 5000);
+				});
+		},
+	},
+	mounted() {
+		this.ready = true;
+	},
+};
+</script>
+
+<style lang="scss"></style>
