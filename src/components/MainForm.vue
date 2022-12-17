@@ -147,12 +147,9 @@ export default {
 			this.width = width1 / 2 - width2 / 2;
 		},
 	},
-	destroyed() {
-		window.removeEventListener('resize', this.getSize);
-	},
 	mounted() {
-		window.addEventListener('resize', this.getSize);
 		this.getSize();
+		window.addEventListener('resize', this.getSize);
 	},
 };
 </script>

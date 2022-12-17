@@ -32,15 +32,18 @@ export default {
 			currentYear: '',
 		};
 	},
-	methods: {},
+	methods: {
+		getVal() {
+			this.screenSize.width = document.documentElement.clientWidth;
+			this.screenSize.height = document.documentElement.clientHeight;
+		},
+	},
 	mounted() {
 		this.currentYear = new Date().getFullYear();
-		this.screenSize.width = document.documentElement.clientWidth;
-		this.screenSize.height = document.documentElement.clientHeight;
+		this.getVal();
+		window.addEventListener('resize', this.getVal);
 	},
 };
 </script>
 
-<style lang="postcss">
-
-</style>
+<style lang="postcss"></style>
