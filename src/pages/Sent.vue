@@ -1,7 +1,7 @@
 <template>
 	<div class="msg">
 		<h2>Отправлено!</h2>
-		<router-link to="/">Вернуться</router-link>
+		<router-link to="/form">Может ещё одну?</router-link>
 	</div>
 </template>
 

@@ -58,6 +58,7 @@ body {
 .main-content {
 	> .wrapper {
 		align-items: stretch;
+		justify-content: flex-start;
 	}
 }
 .main-footer {
@@ -79,4 +80,12 @@ a {
 		color: #f00;
 		transition: var(--transition-in) color;
 	}
+}
+.main-logo a {
+	border-bottom: unset;
+	transition: unset;
+}
+button,
+input#criticism {
+	user-select: none;
 }

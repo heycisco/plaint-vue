@@ -1,5 +1,5 @@
 module.exports = {
-	publicPath: process.env.NODE_ENV === 'production' ? '/plaint-test/' : '/',
+	publicPath: process.env.NODE_ENV === 'production' ? '/' : '/',
 	productionSourceMap: false,
 
 	css: {

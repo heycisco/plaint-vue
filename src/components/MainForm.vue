@@ -49,7 +49,7 @@
 						<button-default
 							class="tooltips__adv-ignore"
 							type="button"
-							@click="updateFormVal(true)"
+							@click="updateFormVal(true), (scipped = 1)"
 							>{{ data.answersContent.ignore }}</button-default
 						>
 						<button-default
@@ -83,6 +83,7 @@ export default {
 				goNext: true,
 				answers: false,
 				successfully: false,
+				scipped: '',
 			},
 		};
 	},
@@ -117,12 +118,12 @@ export default {
 				return 1;
 			} else if (msg < 6) {
 				return 2;
-			} else if (msg > 5 && name < 1) {
-				return 3;
 			} else if (msg > 5 && name > 28) {
 				return 4;
 			} else if (msg > 200 && name > 0 && name < 29) {
 				return 5;
+			} else if (msg > 5 && name < 1 && this.scipped !== 1) {
+				return 3;
 			} else if (this.data.checked === false) {
 				return 6;
 			} else {
@@ -146,7 +147,11 @@ export default {
 			this.width = width1 / 2 - width2 / 2;
 		},
 	},
+	destroyed() {
+		window.removeEventListener('resize', this.getSize);
+	},
 	mounted() {
+		window.addEventListener('resize', this.getSize);
 		this.getSize();
 	},
 };
@@ -166,9 +171,9 @@ export default {
 	.main-btn {
 		display: flex;
 		align-items: center;
-		justify-content: space-between;
 		width: 100%;
 		margin-top: var(--content-indents);
+		justify-content: flex-start;
 		button {
 			font-size: calc(var(--font-size) * 1.4);
 			position: relative;
@@ -201,6 +206,8 @@ export default {
 				font-size: var(--font-size);
 				color: #404040;
 				margin-right: 3em;
+				position: relative;
+				top: 0.1em;
 				&:before {
 					background: #fff;
 				}
@@ -238,20 +245,23 @@ export default {
 			&.success {
 				background: var(--c-green);
 			}
+			p {
+				width: 100%;
+				text-align: center;
+			}
 		}
 		&__adv {
 			display: flex;
 			align-items: center;
 			gap: 1em;
+			font-weight: 600;
 			button {
-				background: #00000061;
-				color: var(--c-second-3);
 				border-radius: 4px;
 				padding: 0 0.5em 0.1em;
-				transition: var(--transition-out) background;
+				transition: var(--transition-out) color;
 				&:hover {
-					background: #000;
-					transition: var(--transition-in) background;
+					color: var(--c-red);
+					transition: var(--transition-in) color;
 				}
 			}
 		}

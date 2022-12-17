@@ -1,6 +1,5 @@
 <template>
 	<div class="wrapper">
-		<site-description :content="content.mainDescription"></site-description>
 		<main-form
 			v-if="ready"
 			:dialogVariants="content.dialogVariants"
@@ -12,13 +11,11 @@
 <script>
 import axios from 'axios';
 import MainForm from '@/components/MainForm';
-import SiteDescription from '@/components/SiteDescription';
 import textContent from '@/content.json';
 
 export default {
 	components: {
 		MainForm,
-		SiteDescription,
 	},
 	data() {
 		return {
@@ -49,12 +46,11 @@ export default {
 			this.filtered.name = name;
 			this.filtered.msg = msg;
 			this.filtered = JSON.stringify(this.filtered);
-			// this.send();
-			setTimeout(() => this.$router.push('/sent'), 5000);
+			this.send();
 		},
 		send() {
 			axios
-				.post('https://starchenkov.pro/use-it/mail.php', this.filtered)
+				.post('http://plaint.starchenkov.pro/mail.php', this.filtered)
 				.then((response) => {
 					console.log(response.data);
 				})

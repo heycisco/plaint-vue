@@ -1,21 +1,21 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Main from '@/pages/Main';
-import About from '@/pages/About';
+import Start from '@/pages/Start';
+import Form from '@/pages/Form';
 import Sent from '@/pages/Sent';
 import NotFound from '@/pages/NotFound';
 
 const routes = [
 	{
 		path: '/',
-		component: Main,
+		component: Start,
+	},
+	{
+		path: '/form',
+		component: Form,
 	},
 	{
 		path: '/sent',
 		component: Sent,
-	},
-	{
-		path: '/about',
-		component: About,
 	},
 	{
 		path: '/:pathMatch(.*)*',

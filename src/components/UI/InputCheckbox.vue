@@ -38,6 +38,7 @@ input {
 label {
 	display: flex;
 	justify-content: flex-start;
+	align-items: flex-end;
 }
 .new-chackbox {
 	font-size: var(--font-size);
@@ -79,6 +80,7 @@ label {
 		animation-duration: 0.3s;
 		animation-fill-mode: forwards;
 		animation-timing-function: ease-out;
+		transform: scale3d(12, 12, 12) rotate(40deg);
 	}
 }
 @keyframes zoomIn {
@@ -86,12 +88,14 @@ label {
 		opacity: 0;
 		transform: scale3d(12, 12, 12) rotate(40deg);
 		filter: blur(5px);
+		overflow: hidden;
 	}
 
 	to {
 		transform: scale3d(1, 1, 1) rotate(-4deg);
 		filter: blur(0);
 		visibility: visible;
+		overflow: visible;
 	}
 }
 </style>
