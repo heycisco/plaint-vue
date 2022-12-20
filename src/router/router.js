@@ -8,18 +8,22 @@ const routes = [
 	{
 		path: '/',
 		component: Start,
+		name: 'start',
 	},
 	{
 		path: '/form',
 		component: Form,
+		name: 'form',
 	},
 	{
 		path: '/sent',
 		component: Sent,
+		name: 'sent',
 	},
 	{
 		path: '/:pathMatch(.*)*',
 		component: NotFound,
+		name: '404',
 	},
 ];
 

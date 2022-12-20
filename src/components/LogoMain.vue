@@ -37,8 +37,7 @@
 export default {
 	name: 'LogoMain',
 	data() {
-		return {
-		};
+		return {};
 	},
 };
 </script>

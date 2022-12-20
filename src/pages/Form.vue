@@ -28,6 +28,7 @@ export default {
 			filtered: {
 				name: '',
 				msg: '',
+				check: 'gAe2ae8cY8HnENtA',
 			},
 			message: '',
 			tooltip: '',
@@ -43,6 +44,9 @@ export default {
 			let name = this.form.name;
 			let msg = this.form.msg;
 			msg = msg.replace(/(\r\n|\r|\n)/g, '<br>');
+			if (!name) {
+				name = 'Аноним';
+			}
 			this.filtered.name = name;
 			this.filtered.msg = msg;
 			this.filtered = JSON.stringify(this.filtered);
@@ -50,12 +54,13 @@ export default {
 		},
 		send() {
 			axios
-				.post('http://plaint.starchenkov.pro/mail.php', this.filtered)
+				.post('/mail.php', this.filtered)
 				.then((response) => {
-					console.log(response.data);
+					// console.log(response.data);
 				})
 				.catch((error) => {
-					console.log(error);
+					// console.log(error);
+					this.$router.push('/error');
 				})
 				.finally(() => {
 					setTimeout(() => this.$router.push('/sent'), 5000);
@@ -68,4 +73,4 @@ export default {
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="postcss"></style>
