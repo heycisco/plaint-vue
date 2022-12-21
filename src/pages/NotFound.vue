@@ -1,13 +1,19 @@
 <template>
 	<div class="msg">
 		<!-- <img :src="image" /> -->
-		<h2>404</h2>
-		<router-link to="/">В начало</router-link>
+		<img v-bind:src="content.images.notFound" alt="404 image" />
+		<router-link to="/">{{ content.notFoundLink }}</router-link>
 	</div>
 </template>
 
 <script>
 export default {
+	props: {
+		content: {
+			type: [Object, Array],
+			required: true,
+		},
+	},
 	data() {
 		return {
 			// image: 'img/404.png',

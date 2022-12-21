@@ -5,8 +5,10 @@
 			v-bind:class="{ blocked: !data.goNext }"
 			v-if="!data.successfully"
 		>
-			<textarea-default :identifier="'message'" v-model:value="data.message"
-				>Жалоба:</textarea-default
+			<textarea-default
+				:identifier="'message'"
+				v-model:value="data.message"
+				>{{ formLabels.message }}</textarea-default
 			>
 
 			<input-default
@@ -14,10 +16,13 @@
 				:identifier="'name'"
 				:type="'text'"
 				@keydown.enter.prevent
-				>Имя:</input-default
+				>{{ formLabels.name }}</input-default
 			>
-			<input-checkbox v-model:value="data.checked" :identifier="'criticism'"
-				>Осуждаю мировой капитализм:</input-checkbox
+			<input-checkbox
+				v-model:value="data.checked"
+				:identifier="'criticism'"
+				:criticismAccept="formLabels.criticismAccept"
+				>{{ formLabels.criticism }}</input-checkbox
 			>
 
 			<div class="main-btn">
@@ -26,14 +31,14 @@
 					type="submit"
 					@click="updateFormVal"
 					:style="{ marginLeft: width + 'px' }"
-					>Отправить</button-default
+					>{{ formLabels.sent }}</button-default
 				>
 
 				<button-default
 					class="main-btn__reset"
 					type="button"
 					@click="resetFormVal"
-					>Очистить</button-default
+					>{{ formLabels.reset }}</button-default
 				>
 			</div>
 		</div>
@@ -69,6 +74,7 @@
 export default {
 	props: {
 		dialogVariants: Array,
+		formLabels: Object,
 	},
 	data() {
 		return {
@@ -230,6 +236,7 @@ export default {
 			box-shadow: var(--shadow-1);
 			font-size: 82%;
 			color: #000;
+			border: 1px solid #0000002e;
 			&.alert {
 				background: var(--c-red);
 			}

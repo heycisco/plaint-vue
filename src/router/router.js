@@ -8,17 +8,17 @@ const routes = [
 	{
 		path: '/',
 		component: Start,
-		name: 'start',
+		name: 'Анонимные жалобы',
 	},
 	{
 		path: '/form',
 		component: Form,
-		name: 'form',
+		name: 'Написать жалобу',
 	},
 	{
 		path: '/sent',
 		component: Sent,
-		name: 'sent',
+		name: 'Отправлено',
 	},
 	{
 		path: '/:pathMatch(.*)*',

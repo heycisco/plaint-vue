@@ -1,47 +1,43 @@
 <template>
 	<div class="main-footer">
 		<div class="content">
-			<p>
-				Издательство «<a href="https://starchenkov.pro/" target="_blank"
-					>Старченков тунеядец</a
-				>»
-			</p>
-			<p>Подписано в печать 2019 г.</p>
-			<p>
-				Носитель {{ screenSize.width }}x{{ screenSize.height }} уч. л. =
-				1,25 усл.
-			</p>
-			<p>Отпечатано {{ currentYear }} г.</p>
-			<p>
-				Типография «<a href="https://mchost.ru/" target="_blank"
-					>Буржуйский Макхост</a
-				>»
-			</p>
+			<p
+				v-for="(item, index) in filteredContent"
+				:key="index"
+				v-html="item"
+			></p>
 		</div>
 	</div>
 </template>
 
 <script>
 export default {
+	props: {
+		content: {
+			type: Array,
+			required: true,
+		},
+	},
 	data() {
 		return {
-			screenSize: {
-				width: '',
-				height: '',
-			},
 			currentYear: '',
+			filteredContent: [],
 		};
 	},
 	methods: {
 		getVal() {
-			this.screenSize.width = document.documentElement.clientWidth;
-			this.screenSize.height = document.documentElement.clientHeight;
+			this.content.forEach((item, index) => {
+				this.filteredContent[index] = item
+					.replace('$year', this.currentYear)
+					.replace('$width', document.documentElement.clientWidth)
+					.replace('$height', document.documentElement.clientHeight);
+			});
+			window.addEventListener('resize', this.getVal);
 		},
 	},
 	mounted() {
 		this.currentYear = new Date().getFullYear();
 		this.getVal();
-		window.addEventListener('resize', this.getVal);
 	},
 };
 </script>

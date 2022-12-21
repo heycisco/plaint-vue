@@ -1,26 +1,51 @@
 <template>
 	<div class="app">
-		<div class="background" v-bind:style="backgroundImage"></div>
+		<div class="background" v-bind:style="content.images.background"></div>
 		<div class="wrapper">
-			<logo-main></logo-main>
+			<logo-main
+				:title="content.logoTitle"
+				:currentPage="routePath"
+			></logo-main>
 			<div class="main-content">
-				<router-view></router-view>
+				<router-view :content="content" />
 			</div>
 		</div>
-		<footer-main></footer-main>
+		<footer-main :content="content.footer"></footer-main>
 	</div>
 </template>
 
 <script>
 import FooterMain from '@/components/FooterMain';
 import LogoMain from '@/components/LogoMain';
+import content from '@/content.json';
 import '@/assets/css/style.css';
 export default {
 	components: { FooterMain, LogoMain },
 	data() {
 		return {
-			backgroundImage: 'background-image: url("img/bg.jpg")',
+			content: content,
+			title: content.siteName,
+			routePath: '',
 		};
+	},
+	methods: {
+		getRoutes() {
+			if (this.$route.name) {
+				this.title =
+					this.content.siteName +
+					this.content.titleSeparator +
+					this.$route.name;
+			}
+			document.title = this.title;
+			this.$route.path === '/'
+				? (this.routePath = 'blocked')
+				: (this.routePath = false);
+		},
+	},
+	watch: {
+		$route(to, from) {
+			this.getRoutes();
+		},
 	},
 };
 </script>

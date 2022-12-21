@@ -8,7 +8,9 @@
 				:checked="value"
 				@input="updateInput"
 			/>
-			<span v-bind:class="{ active: value }" class="new-chackbox"></span>
+			<span v-bind:class="{ active: value }" class="new-checkbox">
+				<span>{{ criticismAccept }}</span>
+			</span>
 		</label>
 	</div>
 </template>
@@ -17,8 +19,9 @@
 export default {
 	name: 'input-checkbox',
 	props: {
-		value: [Boolean],
-		identifier: [String],
+		value: Boolean,
+		identifier: String,
+		criticismAccept: String,
 	},
 	methods: {
 		updateInput(event) {
@@ -40,7 +43,7 @@ label {
 	justify-content: flex-start;
 	align-items: flex-end;
 }
-.new-chackbox {
+.new-checkbox {
 	font-size: var(--font-size);
 	display: inline-block;
 	height: 1.275em;
@@ -55,18 +58,15 @@ label {
 		top: center;
 		pointer-events: all;
 		cursor: pointer;
-	}
-	&:before {
 		content: '';
 		background: var(--border-obj) 0 1.127em;
 		background-size: auto 0.086em;
 		background-repeat: repeat-x;
 	}
-	&:after {
+	span {
 		position: absolute;
 		height: 150%;
 		width: 110%;
-		content: 'Осуждаю!';
 		color: var(--c-main-2);
 		text-align: center;
 		visibility: hidden;
@@ -75,7 +75,7 @@ label {
 		left: -8%;
 		z-index: 10;
 	}
-	&.active:after {
+	&.active span {
 		animation-name: zoomIn;
 		animation-duration: 0.3s;
 		animation-fill-mode: forwards;

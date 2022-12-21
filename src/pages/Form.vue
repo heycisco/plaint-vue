@@ -3,6 +3,7 @@
 		<main-form
 			v-if="ready"
 			:dialogVariants="content.dialogVariants"
+			:formLabels="content.formLabels"
 			@update="update($event)"
 		/>
 	</div>
@@ -11,16 +12,20 @@
 <script>
 import axios from 'axios';
 import MainForm from '@/components/MainForm';
-import textContent from '@/content.json';
 
 export default {
 	components: {
 		MainForm,
 	},
+	props: {
+		content: {
+			type: [Object, Array],
+			required: true,
+		},
+	},
 	data() {
 		return {
 			ready: false,
-			content: textContent,
 			form: {
 				name: '',
 				msg: '',

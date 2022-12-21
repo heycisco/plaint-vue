@@ -1,6 +1,6 @@
 <template>
 	<div class="main-logo">
-		<router-link to="/" title="В начало">
+		<router-link to="/" :title="title" v-bind:class="currentPage">
 			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 341.8 44.42">
 				<g>
 					<path
@@ -36,6 +36,10 @@
 <script>
 export default {
 	name: 'LogoMain',
+	props: {
+		title: String,
+		currentPage: String,
+	},
 	data() {
 		return {};
 	},

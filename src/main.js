@@ -10,4 +10,4 @@ components.forEach((component) => {
 	app.component(component.name, component);
 });
 
-app.use(router, VueAxios, axios).mount('#app');
+app.use(router).use(VueAxios, axios).mount('#app');

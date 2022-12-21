@@ -1,22 +1,25 @@
 <template>
 	<div class="wrapper">
-		<h2>Ёптыть!</h2>
+		<h2>{{ content.title }}</h2>
 		<site-description :content="content.mainDescription"></site-description>
-		<router-link to="/form" class="gogogog">Ну погнали!</router-link>
+		<router-link to="/form" class="start-btn">{{ content.startLink }}</router-link>
 	</div>
 </template>
 
 <script>
 import SiteDescription from '@/components/SiteDescription';
-import textContent from '@/content.json';
 export default {
 	components: {
 		SiteDescription,
 	},
+	props: {
+		content: {
+			type: [Object, Array],
+			required: true,
+		},
+	},
 	data() {
-		return {
-			content: textContent,
-		};
+		return {};
 	},
 };
 </script>
@@ -34,7 +37,7 @@ export default {
 	}
 }
 
-.gogogog {
+.start-btn {
 	font-size: calc(var(--font-size) * 1.4);
 	position: relative;
 	color: #f7fbfa;
@@ -58,9 +61,6 @@ export default {
 			drop-shadow(0 2px 1px var(--shadow-1-color)) blur(1px);
 		shape-rendering: auto;
 		background: var(--c-brand);
-	}
-	&.main-btn__submit:hover {
-		box-shadow: 0 2px 4px #000;
 	}
 }
 .main-description {
