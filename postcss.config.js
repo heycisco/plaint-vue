@@ -3,21 +3,25 @@ if (process.env.NODE_ENV === 'production') {
 		plugins: [
 			require('postcss-import'),
 			require('postcss-custom-media'),
-			require('postcss-nested'),
 			require('postcss-simple-vars'),
+			require('postcss-mixins'),
 			require('postcss-short'),
 			require('postcss-center'),
-			require('postcss-mixins'),
-			require('postcss-combine-duplicated-selectors')({
-				removeDuplicatedProperties: true,
-				removeDuplicatedValues: true,
-			}),
-			require('postcss-calc'),
-			require('postcss-flexbugs-fixes'),
-			require('postcss-will-change-transition'),
+			require('postcss-nested'),
 			require('postcss-sort-media-queries'),
-			require('postcss-preset-env')({
-				autoprefixer: { grid: true },
+			require('postcss-flexbugs-fixes'),
+			require('webp-in-css/plugin.js'),
+			require('postcss-will-change-transition'),
+			require('cssnano')({
+				preset: [
+					'advanced',
+					{
+						normalizeWhitespace: true,
+						cssDeclarationSorter: { order: 'smacss' },
+						discardComments: { removeAll: true },
+					},
+					// Preset options: https://cssnano.co/docs/what-are-optimisations/
+				],
 			}),
 		],
 	});
@@ -26,11 +30,21 @@ if (process.env.NODE_ENV === 'production') {
 		plugins: [
 			require('postcss-import'),
 			require('postcss-custom-media'),
-			require('postcss-nested'),
 			require('postcss-simple-vars'),
+			require('postcss-mixins'),
 			require('postcss-short'),
 			require('postcss-center'),
-			require('postcss-mixins'),
+			require('postcss-nested'),
+			require('cssnano')({
+				preset: [
+					'lite',
+					{
+						normalizeWhitespace: false,
+						discardComments: false,
+						cssDeclarationSorter: { order: 'smacss' },
+					},
+				],
+			}),
 		],
 	});
 }

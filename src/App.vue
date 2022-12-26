@@ -38,8 +38,8 @@ export default {
 			}
 			document.title = this.title;
 			this.$route.path === '/'
-				? (this.routePath = 'blocked')
-				: (this.routePath = false);
+				? (this.routePath = 'start')
+				: (this.routePath = 'deep');
 		},
 	},
 	watch: {

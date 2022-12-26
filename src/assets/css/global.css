@@ -78,10 +78,10 @@ body {
 }
 a {
 	border-bottom: 2px dotted var(--shadow-2-color);
-	transition: var(--transition-out) color;
+	transition: color var(--transition-out);
 	&:hover {
 		color: #f00;
-		transition: var(--transition-in) color;
+		transition: color var(--transition-in);
 	}
 }
 .main-logo a {

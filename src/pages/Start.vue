@@ -45,9 +45,9 @@ export default {
 	padding: 0.2em 0.5em;
 	font-weight: 600;
 	text-shadow: 0 0 1px #0000009e;
-	transition: var(--transition-out) box-shadow;
+	transition: box-shadow var(--transition-out);
 	&:hover {
-		transition: var(--transition-in) box-shadow;
+		transition: box-shadow var(--transition-in);
 		box-shadow: 0 1px 4px #00000085;
 	}
 	&:before {

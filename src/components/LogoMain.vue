@@ -54,7 +54,7 @@ export default {
 		}
 	}
 }
-.blocked {
+.start {
 	pointer-events: none;
 }
 </style>
