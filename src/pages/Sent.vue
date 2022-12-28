@@ -1,13 +1,15 @@
 <template>
-	<div class="msg">
+	<div class="msg" v-if="created">
 		<div v-html="content.afterSentMessage" class="msg__text"></div>
-		<img v-bind:src="content.images.sent" alt="sent image" />
+		<img v-bind:src="wepbUrl(content.images.sent)" alt="sent image" />
 		<router-link to="/form">{{ content.afterSentLink }}</router-link>
 	</div>
 </template>
 
 <script>
+import webpCheck from '@/mixins/webpCheck';
 export default {
+	mixins: [webpCheck],
 	props: {
 		content: {
 			type: [Object, Array],

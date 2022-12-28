@@ -1,6 +1,11 @@
 <template>
-	<div class="app" v-if="loaded">
-		<div class="background" v-bind:style="content.images.background"></div>
+	<div class="app" v-if="mounted && created">
+		<div
+			class="background"
+			v-bind:style="
+				'background-image: url(' + wepbUrl(content.images.background) + ')'
+			"
+		></div>
 		<div class="wrapper">
 			<logo-main
 				:title="content.logoTitle"
@@ -15,28 +20,30 @@
 </template>
 
 <script>
-import FooterMain from '@/components/FooterMain';
-import LogoMain from '@/components/LogoMain';
 import axios from 'axios';
 import '@/assets/css/style.css';
+import webpCheck from '@/mixins/webpCheck';
+import FooterMain from '@/components/FooterMain';
+import LogoMain from '@/components/LogoMain';
 export default {
+	mixins: [webpCheck],
 	components: { FooterMain, LogoMain },
 	data() {
 		return {
 			content: null,
-			loaded: false,
+			mounted: false,
 			title: '',
 			routePath: '',
 		};
 	},
 	methods: {
 		getRoutes() {
-			if (this.loaded && this.$route.name) {
+			if (this.mounted && this.$route.name) {
 				this.title =
 					this.content.siteName +
 					this.content.titleSeparator +
 					this.$route.name;
-			} else if (this.loaded) {
+			} else if (this.mounted) {
 				this.title = this.content.siteName;
 			} else {
 				this.title = 'Loading';
@@ -59,8 +66,9 @@ export default {
 				this.content = response.data;
 			})
 			.finally(() => {
-				this.loaded = true;
+				this.mounted = true;
 				this.getRoutes();
+				this.wepbUrl(this.content.images.background);
 			});
 	},
 };

@@ -1,13 +1,15 @@
 <template>
-	<div class="msg">
+	<div class="msg" v-if="created">
 		<!-- <img :src="image" /> -->
-		<img v-bind:src="content.images.notFound" alt="404 image" />
+		<img v-bind:src="wepbUrl(content.images.notFound)" alt="404 image" />
 		<router-link to="/">{{ content.notFoundLink }}</router-link>
 	</div>
 </template>
 
 <script>
+import webpCheck from '@/mixins/webpCheck';
 export default {
+	mixins: [webpCheck],
 	props: {
 		content: {
 			type: [Object, Array],
