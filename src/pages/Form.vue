@@ -37,6 +37,7 @@ export default {
 			},
 			message: '',
 			tooltip: '',
+			error: false,
 		};
 	},
 	methods: {
@@ -59,16 +60,18 @@ export default {
 		},
 		send() {
 			axios
-				.post('/mail.php', this.filtered)
+				.post('http://plaint.starchenkov.pro/mail.php', this.filtered)
 				.then((response) => {
 					// console.log(response.data);
 				})
 				.catch((error) => {
-					// console.log(error);
+					this.error = true;
 					this.$router.push('/error');
 				})
 				.finally(() => {
-					setTimeout(() => this.$router.push('/sent'), 5000);
+					if (!this.error) {
+						setTimeout(() => this.$router.push('/sent'), 5000);
+					}
 				});
 		},
 	},

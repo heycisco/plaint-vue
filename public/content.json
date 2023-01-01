@@ -70,5 +70,10 @@
 		"background": "img/bg.jpg",
 		"sent": "img/sent.jpg",
 		"notFound": "img/404.png"
+	},
+	"error": {
+		"msg": "Упс, чето пошло не так!",
+		"img": "img/error.jpg",
+		"linkMsg": "Ещё раз попробуем?"
 	}
 }

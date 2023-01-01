@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Start from '@/pages/Start';
 import Form from '@/pages/Form';
 import Sent from '@/pages/Sent';
+import Error from '@/pages/Error';
 import NotFound from '@/pages/NotFound';
 
 const routes = [
@@ -19,6 +20,11 @@ const routes = [
 		path: '/sent',
 		component: Sent,
 		name: 'Отправлено',
+	},
+	{
+		path: '/error',
+		component: Error,
+		name: 'Ошибка',
 	},
 	{
 		path: '/:pathMatch(.*)*',
