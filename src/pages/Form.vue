@@ -60,7 +60,7 @@ export default {
 		},
 		send() {
 			axios
-				.post('http://plaint.starchenkov.pro/mail.php', this.filtered)
+				.post('/mail.php', this.filtered)
 				.then((response) => {
 					// console.log(response.data);
 				})
