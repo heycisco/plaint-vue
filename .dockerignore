@@ -1,0 +1,27 @@
+# Секреты: в контейнер переменные приходят через --env-file, в образ не попадают
+.env
+.env.*
+!.env.example
+
+# Зависимости и артефакты сборки — собираются внутри образа
+node_modules
+.output
+.nuxt
+.nitro
+.cache
+.data
+dist
+
+# Данные (монтируются volume)
+data
+
+# Служебное
+.git
+.github
+.cursor
+.idea
+.fleet
+.DS_Store
+*.log
+docs
+README.md
