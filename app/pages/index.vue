@@ -25,6 +25,10 @@ usePageSeo({
 </template>
 
 <style scoped>
+.start-page {
+  margin-top: 48px;
+}
+
 .start-page h1 {
   font-size: clamp(2.25rem, 14vw, 3em);
   line-height: 1.1;
