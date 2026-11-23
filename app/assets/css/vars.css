@@ -1,4 +1,5 @@
 :root {
+  --field-rule-height: 0.086em;
   --grid-sides: 64px;
   --section-padding: 32px;
   --content-indents: 24px;

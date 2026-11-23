@@ -43,6 +43,7 @@ withDefaults(defineProps<{
   transition: box-shadow var(--transition-out);
   border: 0;
   background: transparent;
+  border-radius: 2px;
 }
 
 .plaint-btn:hover:not(:disabled) {
@@ -56,6 +57,7 @@ withDefaults(defineProps<{
   inset: 0;
   z-index: -1;
   background: var(--c-brand);
+  border-radius: 2px;
 }
 
 .plaint-btn:disabled {
@@ -66,7 +68,6 @@ withDefaults(defineProps<{
 .plaint-btn--reset {
   font-size: var(--font-size);
   color: #404040;
-  margin-right: 3em;
   top: 0.1em;
 }
 

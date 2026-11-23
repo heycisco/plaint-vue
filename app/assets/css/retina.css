@@ -1,0 +1,17 @@
+@media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
+  :root {
+    --field-rule-height: 1px;
+  }
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+  .app {
+    text-shadow: 0 0 0.45px #000;
+  }
+
+  .plaint-btn::before {
+    filter:
+      drop-shadow(0 1px 3px var(--shadow-2-color))
+      drop-shadow(0 1px 1px var(--shadow-1-color));
+  }
+}
