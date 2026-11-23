@@ -1,0 +1,18 @@
+@font-face {
+  font-family: 'TrixiePro';
+  font-display: swap;
+  src:
+    local('TrixiePro-Heavy'),
+    url('../fonts/TrixiePro-Heavy.woff2') format('woff2'),
+    url('../fonts/TrixiePro-Heavy.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'GOST-type-A';
+  font-display: swap;
+  src:
+    local('GOST type A'),
+    local('GOSTTypeA'),
+    url('../fonts/GOSTTypeA.woff2') format('woff2'),
+    url('../fonts/GOSTTypeA.woff') format('woff');
+}
