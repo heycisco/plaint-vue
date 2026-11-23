@@ -204,6 +204,12 @@ node .output/server/index.mjs
 5. Обеспечьте **запись в каталог `data/`** рядом с рабочей директорией приложения (или смонтируйте том).
 6. Проксируйте HTTPS снаружи (nginx, Caddy) — для secure-cookie админки нужен HTTPS в production.
 
+### CI/CD (Ubuntu + GitHub)
+
+- **CI** (`.github/workflows/ci.yml`): на каждый push/PR в `main` — `npm ci`, typecheck, build.
+- **Deploy** (`.github/workflows/deploy.yml`): после успешной проверки на push в `main` — SSH на сервер, `git reset --hard origin/main`, `deploy/deploy.sh`.
+- Пошаговая настройка сервера, nginx, systemd, секреты Actions: **[docs/DEPLOY-UBUNTU.md](docs/DEPLOY-UBUNTU.md)**.
+
 Каталоги сборки (`.output`, `.nuxt`) в репозиторий не кладутся — они появляются после `build`.
 
 ## Структура проекта

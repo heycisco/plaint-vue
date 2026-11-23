@@ -1,0 +1,25 @@
+[Unit]
+Description=Кляузная (plaint) — Nuxt Nitro
+After=network.target
+
+[Service]
+Type=simple
+User=plaint
+Group=plaint
+WorkingDirectory=/var/www/plaint
+Environment=NODE_ENV=production
+Environment=PORT=3000
+EnvironmentFile=/var/www/plaint/.env
+ExecStart=/usr/bin/node .output/server/index.mjs
+Restart=on-failure
+RestartSec=5
+
+# Безопасность (при необходимости ослабьте под вашу ОС)
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/www/plaint/data
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
