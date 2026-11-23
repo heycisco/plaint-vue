@@ -36,17 +36,13 @@ jobs:
     environment: production
     steps:
       - name: Deploy over SSH
+        # Ключ на сервере ограничен forced command (/var/www/plaint/deploy.sh):
+        # сервер сам делает git pull, docker build и перезапуск контейнера.
         uses: appleboy/ssh-action@v1.2.0
         with:
           host: ${{ secrets.DEPLOY_HOST }}
           username: ${{ secrets.DEPLOY_USER }}
           key: ${{ secrets.DEPLOY_SSH_KEY }}
           port: ${{ secrets.DEPLOY_PORT || 22 }}
-          script_stop: true
           command_timeout: 20m
-          script: |
-            set -euo pipefail
-            cd "${{ secrets.DEPLOY_PATH }}"
-            git fetch origin main
-            git reset --hard origin/main
-            ./deploy/deploy.sh
+          script: /var/www/plaint/deploy.sh
